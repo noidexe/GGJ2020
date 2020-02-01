@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://textures/overworld/raptor.png" type="Texture" id=1]
+[ext_resource path="res://scenes/Raptorr.gd" type="Script" id=2]
+[ext_resource path="res://scenes/RaptorrBullet.tscn" type="PackedScene" id=3]
+
+[node name="Raptorr" type="Area2D" groups=[
+"enemies",
+]]
+position = Vector2( 262.213, 426.794 )
+script = ExtResource( 2 )
+stride = 50
+bullet_scene = ExtResource( 3 )
+
+[node name="col" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -205.48, 2.29785, -195.717, -78.5978, 26.0484, -353.364, 162.734, -266.889, 97.1807, -0.491699 )
+
+[node name="sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+offset = Vector2( 93, -175 )
+
+[node name="advance_timer" type="Timer" parent="."]
+
+[node name="bullet_spawner" type="Position2D" parent="."]
+position = Vector2( 172.949, -230.134 )
+[connection signal="area_entered" from="." to="." method="_on_Raptorr_area_entered"]
+[connection signal="timeout" from="advance_timer" to="." method="_on_advance_timer_timeout"]

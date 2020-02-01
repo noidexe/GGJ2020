@@ -1,0 +1,104 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://styles/progressbar_bg_broken.tres" type="StyleBox" id=1]
+[ext_resource path="res://textures/icon.png" type="Texture" id=2]
+[ext_resource path="res://styles/progressbar_fg_broken.tres" type="StyleBox" id=3]
+[ext_resource path="res://scenes/Box.gd" type="Script" id=4]
+[ext_resource path="res://styles/progressbar_fg.tres" type="StyleBox" id=5]
+[ext_resource path="res://styles/progressbar_bg.tres" type="StyleBox" id=6]
+[ext_resource path="res://scenes/trigger_bar.gd" type="Script" id=7]
+[ext_resource path="res://textures/repair_bar.png" type="Texture" id=8]
+[ext_resource path="res://scenes/repair_bar.gd" type="Script" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 75.662, 50.4861 )
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.777778, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+width = 128
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 0.311364 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+width = 256
+curve = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+gravity = Vector3( 0, -98, 0 )
+initial_velocity = 100.0
+angular_velocity = 200.0
+angular_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale_random = 0.5
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 3 )
+
+[node name="ConsoleBox" type="Area2D" groups=[
+"boxes",
+]]
+script = ExtResource( 4 )
+fill_time = 30.0
+
+[node name="player_detector" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 0.981628 )
+shape = SubResource( 1 )
+
+[node name="smoke" type="Particles2D" parent="."]
+position = Vector2( -1.78262, -35.5631 )
+emitting = false
+process_material = SubResource( 6 )
+texture = ExtResource( 2 )
+
+[node name="sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 150, 100 )
+
+[node name="trigger_bar" type="ProgressBar" parent="sprite"]
+margin_left = -54.1642
+margin_top = -7.81115
+margin_right = 53.8358
+margin_bottom = 23.1888
+mouse_filter = 2
+custom_styles/fg = ExtResource( 5 )
+custom_styles/bg = ExtResource( 6 )
+step = 1.0
+value = 75.0
+percent_visible = false
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+fg_working = ExtResource( 5 )
+fg_broken = ExtResource( 3 )
+bg_working = ExtResource( 6 )
+bg_broken = ExtResource( 1 )
+
+[node name="repair_bar" type="TextureProgress" parent="sprite"]
+self_modulate = Color( 1, 0.984314, 0, 1 )
+margin_left = -32.087
+margin_top = -123.0
+margin_right = 7.91299
+margin_bottom = -83.0001
+mouse_filter = 2
+value = 10.0
+texture_progress = ExtResource( 8 )
+fill_mode = 4
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="trigger_timer" type="Timer" parent="."]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="input_event" from="." to="." method="_on_ConsoleBox_input_event"]
+[connection signal="timeout" from="trigger_timer" to="." method="_on_trigger_timer_timeout"]

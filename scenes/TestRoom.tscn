@@ -1,0 +1,97 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Box.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Ultrazort.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Raptorr.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/raptorr_spawner.gd" type="Script" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 144.087, 28.7826 )
+
+[node name="TestRoom" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( 694.771, 771.872 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2( 974.312, 551.364 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource( 1 )
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2( 374.679, 1020.81 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+shape = SubResource( 1 )
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+position = Vector2( 654.771, 1020.81 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
+shape = SubResource( 1 )
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="."]
+position = Vector2( 942.752, 1020.81 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D6"]
+shape = SubResource( 1 )
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="."]
+position = Vector2( 1226.79, 1016.87 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D7"]
+shape = SubResource( 1 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2( 486.417, 429.825 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+shape = SubResource( 1 )
+
+[node name="ConsoleBox" parent="." instance=ExtResource( 2 )]
+position = Vector2( 733.715, 691.411 )
+fill_time = 3.0
+
+[node name="ConsoleBox4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 938.853, 932.053 )
+weapon_type = 2
+fill_time = 3.0
+
+[node name="ConsoleBox2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 454.174, 349.364 )
+weapon_type = 0
+fill_time = 3.0
+
+[node name="ConsoleBox3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1239.22, 767.529 )
+weapon_type = 1
+fill_time = 3.0
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 565.296, 641.059 )
+
+[node name="Player2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 990.685, 437.914 )
+id = "p2"
+
+[node name="overworld" type="Position2D" parent="."]
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Ultrazort" parent="overworld" instance=ExtResource( 3 )]
+position = Vector2( 3385.26, 250.202 )
+
+[node name="raptorr_spawner" type="Position2D" parent="overworld"]
+position = Vector2( -235.337, 409.345 )
+script = ExtResource( 5 )
+
+[node name="Timer" type="Timer" parent="overworld/raptorr_spawner"]
+wait_time = 10.0
+autostart = true
+
+[node name="Raptorr" parent="overworld" instance=ExtResource( 4 )]
+[connection signal="timeout" from="overworld/raptorr_spawner/Timer" to="overworld/raptorr_spawner" method="_on_Timer_timeout"]
