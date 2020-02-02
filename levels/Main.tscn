@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/TestRoom.tscn" type="PackedScene" id=1]
+[ext_resource path="res://levels/Main.gd" type="Script" id=2]
+[ext_resource path="res://scenes/Camera.tscn" type="PackedScene" id=3]
+[ext_resource path="res://levels/Viewport.gd" type="Script" id=4]
+
+[node name="Main" type="Node"]
+script = ExtResource( 2 )
+
+[node name="MainScreens" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Overworld" type="ViewportContainer" parent="MainScreens"]
+margin_right = 1920.0
+margin_bottom = 230.0
+rect_min_size = Vector2( 0, 230 )
+size_flags_horizontal = 3
+stretch = true
+
+[node name="ViewportTop" type="Viewport" parent="MainScreens/Overworld"]
+handle_input_locally = false
+usage = 0
+render_target_update_mode = 3
+script = ExtResource( 4 )
+
+[node name="Screens" type="HBoxContainer" parent="MainScreens"]
+margin_top = 234.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="P1Screen" type="ViewportContainer" parent="MainScreens/Screens"]
+margin_right = 958.0
+margin_bottom = 846.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="ViewportLeft" type="Viewport" parent="MainScreens/Screens/P1Screen"]
+size = Vector2( 958, 846 )
+handle_input_locally = false
+usage = 0
+render_target_update_mode = 3
+audio_listener_enable_2d = true
+script = ExtResource( 4 )
+
+[node name="CameraP1" parent="MainScreens/Screens/P1Screen/ViewportLeft" instance=ExtResource( 3 )]
+
+[node name="P2Screen" type="ViewportContainer" parent="MainScreens/Screens"]
+margin_left = 962.0
+margin_right = 1920.0
+margin_bottom = 846.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="ViewportRight" type="Viewport" parent="MainScreens/Screens/P2Screen"]
+size = Vector2( 958, 846 )
+handle_input_locally = false
+usage = 0
+render_target_update_mode = 3
+audio_listener_enable_2d = true
+script = ExtResource( 4 )
+
+[node name="CameraP2" parent="MainScreens/Screens/P2Screen/ViewportRight" instance=ExtResource( 3 )]
+id = "p2"
+
+[node name="world" parent="MainScreens/Screens/P2Screen/ViewportRight" instance=ExtResource( 1 )]
