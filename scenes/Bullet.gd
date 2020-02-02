@@ -15,12 +15,12 @@ func _physics_process(delta):
 	position += direction * velocity * delta
 
 func kill():
-	_spawn_explosion()
+	_spawn_explosion(explosion_scene)
 	queue_free()
 
 
-func _spawn_explosion():
-	var explosion = explosion_scene.instance()
+func _spawn_explosion(scene):
+	var explosion = scene.instance()
 	get_parent().add_child(explosion)
 	explosion.global_position = global_position
 	explosion.scale *= 0.5

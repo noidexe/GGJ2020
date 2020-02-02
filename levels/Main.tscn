@@ -7,6 +7,7 @@
 
 [node name="Main" type="Node"]
 script = ExtResource( 2 )
+clear_color = Color( 0.258824, 0.635294, 0.862745, 1 )
 
 [node name="MainScreens" type="VBoxContainer" parent="."]
 anchor_right = 1.0

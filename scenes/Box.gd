@@ -56,10 +56,12 @@ func _break():
 	timer.paused = true
 	trigger_bar.is_working = is_working
 	repair_bar.value = 0
+	smoke.emitting = true
 	emit_signal("broken", self)
 	pass
 	
 func _restart():
+	smoke.emitting = false
 	hp = rand_range(life_ticks_min, life_ticks_max)
 	is_working = true
 	timer.paused = false

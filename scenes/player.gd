@@ -3,17 +3,19 @@ extends KinematicBody2D
 class_name Player
 
 
-const GRAVITY_VEC = Vector2(0, 900)
+export var GRAVITY_VEC = Vector2(0, 900)
 const FLOOR_NORMAL = Vector2(0, -1)
 const SLOPE_SLIDE_STOP = 25.0
-const WALK_SPEED = 250 # pixels/sec
-const JUMP_SPEED = 680
+export var WALK_SPEED = 250 # pixels/sec
+export var JUMP_SPEED = 680
 const SIDING_CHANGE_SPEED = 10
 const BULLET_VELOCITY = 1000
 const SHOOT_TIME_SHOW_WEAPON = 0.2
 
 var linear_vel = Vector2()
 var shoot_time = 99999 # time since last shot
+
+var air_time = 0
 
 var anim = ""
 
@@ -41,7 +43,6 @@ func _ready():
 func _physics_process(delta):
 	# Increment counters
 	shoot_time += delta
-
 	### MOVEMENT ###
 
 	# Apply gravity
@@ -50,7 +51,10 @@ func _physics_process(delta):
 	linear_vel = move_and_slide(linear_vel, FLOOR_NORMAL, SLOPE_SLIDE_STOP)
 	# Detect if we are on floor - only works if called *after* move_and_slide
 	var on_floor = is_on_floor()
-
+	if on_floor:
+		air_time = 0
+	else:
+		air_time += delta
 	### CONTROL ###
 
 	# Horizontal movement
@@ -64,7 +68,8 @@ func _physics_process(delta):
 	linear_vel.x = target_speed #lerp(linear_vel.x, target_speed, 0.1)
 
 	# Jumping
-	if on_floor and Input.is_action_just_pressed(id + "_jump"):
+	if air_time < 0.2 and Input.is_action_just_pressed(id + "_jump"):
+		air_time = 1
 		linear_vel.y = -JUMP_SPEED
 	
 	if Input.is_action_just_pressed(id + "_hit"):

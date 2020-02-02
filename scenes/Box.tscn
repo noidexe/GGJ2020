@@ -1,7 +1,7 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://styles/progressbar_bg_broken.tres" type="StyleBox" id=1]
-[ext_resource path="res://textures/icon.png" type="Texture" id=2]
+[ext_resource path="res://textures/smoke.png" type="Texture" id=2]
 [ext_resource path="res://styles/progressbar_fg_broken.tres" type="StyleBox" id=3]
 [ext_resource path="res://scenes/Box.gd" type="Script" id=4]
 [ext_resource path="res://styles/progressbar_fg.tres" type="StyleBox" id=5]
@@ -9,13 +9,14 @@
 [ext_resource path="res://scenes/trigger_bar.gd" type="Script" id=7]
 [ext_resource path="res://textures/repair_bar.png" type="Texture" id=8]
 [ext_resource path="res://scenes/repair_bar.gd" type="Script" id=9]
+[ext_resource path="res://textures/consolebox.png" type="Texture" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 75.662, 50.4861 )
 
 [sub_resource type="Gradient" id=2]
-offsets = PoolRealArray( 0, 0.777778, 1 )
-colors = PoolColorArray( 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+offsets = PoolRealArray( 0, 0.503226, 0.651613, 0.832258, 1 )
+colors = PoolColorArray( 0.941922, 1, 0, 1, 0.987716, 0.0727975, 0, 1, 0.0619349, 0, 0, 1, 0.0823529, 0.0823529, 0.0823529, 1, 0, 0, 0, 0 )
 
 [sub_resource type="GradientTexture" id=3]
 gradient = SubResource( 2 )
@@ -29,6 +30,8 @@ width = 256
 curve = SubResource( 4 )
 
 [sub_resource type="ParticlesMaterial" id=6]
+emission_shape = 2
+emission_box_extents = Vector3( 50, 1, 1 )
 flag_disable_z = true
 direction = Vector3( 0, -1, 0 )
 gravity = Vector3( 0, -98, 0 )
@@ -54,19 +57,20 @@ shape = SubResource( 1 )
 [node name="smoke" type="Particles2D" parent="."]
 position = Vector2( -1.78262, -35.5631 )
 emitting = false
+amount = 16
 process_material = SubResource( 6 )
 texture = ExtResource( 2 )
 
 [node name="sprite" type="Sprite" parent="."]
-texture = ExtResource( 2 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 150, 100 )
+position = Vector2( -0.0594994, -7.74522 )
+scale = Vector2( 0.859827, 0.859828 )
+texture = ExtResource( 10 )
 
 [node name="trigger_bar" type="ProgressBar" parent="sprite"]
-margin_left = -54.1642
-margin_top = -7.81115
-margin_right = 53.8358
-margin_bottom = 23.1888
+margin_left = -60.2595
+margin_top = -23.962
+margin_right = 62.7405
+margin_bottom = 19.038
 mouse_filter = 2
 custom_styles/fg = ExtResource( 5 )
 custom_styles/bg = ExtResource( 6 )
@@ -84,10 +88,10 @@ bg_broken = ExtResource( 1 )
 
 [node name="repair_bar" type="TextureProgress" parent="sprite"]
 self_modulate = Color( 1, 0.984314, 0, 1 )
-margin_left = -32.087
-margin_top = -123.0
-margin_right = 7.91299
-margin_bottom = -83.0001
+margin_left = -37.2488
+margin_top = -134.044
+margin_right = 26.7512
+margin_bottom = -70.0441
 mouse_filter = 2
 value = 10.0
 texture_progress = ExtResource( 8 )

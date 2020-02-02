@@ -190,7 +190,6 @@ script = ExtResource( 1 )
 texture = ExtResource( 2 )
 vframes = 2
 hframes = 16
-frame = 10
 
 [node name="Anim" type="AnimationPlayer" parent="."]
 anims/crouch = SubResource( 1 )
