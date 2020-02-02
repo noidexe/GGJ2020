@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://textures/overworld/raptor.png" type="Texture" id=1]
+[ext_resource path="res://textures/raptor.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Raptorr.gd" type="Script" id=2]
 [ext_resource path="res://scenes/RaptorrBullet.tscn" type="PackedScene" id=3]
 

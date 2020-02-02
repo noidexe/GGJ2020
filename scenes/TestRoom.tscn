@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Box.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://textures/core_particle.png" type="Texture" id=9]
 [ext_resource path="res://textures/smoke.png" type="Texture" id=10]
 [ext_resource path="res://textures/platform.png" type="Texture" id=11]
+[ext_resource path="res://textures/city.png" type="Texture" id=12]
 
 [sub_resource type="CanvasItemMaterial" id=12]
 blend_mode = 1
@@ -488,6 +489,13 @@ texture = ExtResource( 6 )
 
 [node name="overworld" type="Position2D" parent="."]
 scale = Vector2( 0.5, 0.5 )
+
+[node name="Sprite" type="Sprite" parent="overworld"]
+position = Vector2( 0, 61.8937 )
+texture = ExtResource( 12 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 3840, 400 )
 
 [node name="Ultrazort" parent="overworld" instance=ExtResource( 3 )]
 position = Vector2( 3385.26, 250.202 )
