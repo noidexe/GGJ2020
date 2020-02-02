@@ -14,10 +14,10 @@
 [ext_resource path="res://scenes/MissileBullet.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/SlashBullet.tscn" type="PackedScene" id=13]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 53.9435, 162.085 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "gun"
 length = 2.0
 tracks/0/type = "value"
@@ -65,7 +65,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "idle"
 length = 0.1
 tracks/0/type = "value"
@@ -105,7 +105,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 resource_name = "missile"
 length = 2.0
 tracks/0/type = "value"
@@ -162,7 +162,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 resource_name = "slash"
 length = 0.5
 tracks/0/type = "value"
@@ -204,7 +204,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=6]
 resource_name = "take_damage"
 step = 0.05
 tracks/0/type = "value"
@@ -244,7 +244,7 @@ tracks/2/keys = {
 "values": [ Vector2( -16.737, 0 ), Vector2( 18.9686, 0 ), Vector2( -19.688, 0 ), Vector2( 15.9736, 0 ), Vector2( -10.1304, 0 ), Vector2( 19.8348, 0 ), Vector2( -37.3941, 0 ), Vector2( -10.5672, 0 ), Vector2( -22.1592, 0 ), Vector2( -1.81154, 0 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="SpriteFrames" id=7]
 animations = [ {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 1 ) ],
 "loop": false,
@@ -252,8 +252,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="Animation" id=7]
-resource_name = "flash"
+[sub_resource type="Animation" id=8]
 length = 0.3
 step = 0.01
 tracks/0/type = "value"
@@ -269,8 +268,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.615686 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.615686 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.615686 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.64 ), Color( 1, 1, 1, 0.658824 ), Color( 1, 1, 1, 0.48 ), Color( 1, 1, 1, 0.513726 ), Color( 1, 1, 1, 0.2 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=8]
-resource_name = "reset"
+[sub_resource type="Animation" id=9]
 length = 0.001
 step = 0.01
 tracks/0/type = "value"
@@ -297,28 +295,23 @@ missile_bullet = ExtResource( 12 )
 
 [node name="col" type="CollisionShape2D" parent="."]
 position = Vector2( 150.633, 2.78949 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="anims" type="AnimationPlayer" parent="."]
 autoplay = "idle"
-anims/gun = SubResource( 3 )
-anims/idle = SubResource( 4 )
-anims/missile = SubResource( 5 )
-anims/slash = SubResource( 6 )
-anims/take_damage = SubResource( 9 )
+anims/gun = SubResource( 2 )
+anims/idle = SubResource( 3 )
+anims/missile = SubResource( 4 )
+anims/slash = SubResource( 5 )
+anims/take_damage = SubResource( 6 )
 next/gun = "idle"
 next/missile = "idle"
 next/slash = "idle"
 
-[node name="sprite" type="AnimatedSprite" parent="."]
-position = Vector2( -16.737, 0 )
-frames = SubResource( 1 )
-frame = 3
-
-[node name="shields" type="TextureProgress" parent="sprite"]
-margin_left = 267.792
+[node name="shields" type="TextureProgress" parent="."]
+margin_left = 251.055
 margin_top = -167.37
-margin_right = 332.792
+margin_right = 316.055
 margin_bottom = 172.63
 mouse_filter = 2
 value = 50.0
@@ -330,10 +323,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="hp" type="TextureProgress" parent="sprite"]
-margin_left = 350.083
+[node name="hp" type="TextureProgress" parent="."]
+margin_left = 333.346
 margin_top = -167.37
-margin_right = 415.083
+margin_right = 398.346
 margin_bottom = 172.63
 mouse_filter = 2
 value = 50.0
@@ -345,14 +338,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="sprite" type="AnimatedSprite" parent="."]
+position = Vector2( -16.737, 0 )
+frames = SubResource( 7 )
+frame = 3
+
 [node name="force_field" type="Sprite" parent="."]
 self_modulate = Color( 1, 1, 1, 0 )
 texture = ExtResource( 6 )
 
 [node name="anims" type="AnimationPlayer" parent="force_field"]
 autoplay = "reset"
-anims/flash = SubResource( 7 )
-anims/reset = SubResource( 8 )
+anims/flash = SubResource( 8 )
+anims/reset = SubResource( 9 )
 
 [node name="bullet_spawnpoint" type="Position2D" parent="."]
 position = Vector2( -2.78952, -85.0799 )

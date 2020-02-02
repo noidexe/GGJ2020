@@ -11,8 +11,8 @@ export(PackedScene) var missile_bullet
 
 onready var anims = $anims
 onready var force_fiield_anim = $force_field/anims
-onready var hp_bar = $sprite/hp
-onready var shield_bar = $sprite/shields
+onready var hp_bar = $hp
+onready var shield_bar = $shields
 
 onready var bullet_spawnpoint = $bullet_spawnpoint
 onready var missile_spawnpoint = $missile_spawnpoint
@@ -34,16 +34,19 @@ func _ready():
 
 
 func _on_area_entered(area:Node):
-	if area.is_in_group("enemies"):
-		area.melee_range = true
-	elif area.is_in_group("enemy_bullets"):
+	#if area.is_in_group("enemies"):
+	#	area.melee_range = true
+	if area.is_in_group("enemy_bullets"):
 		hit(area.damage)
+		area.kill()
 
 func hit(damage):
 	if shield_bar.value > 0:
 		shield_bar.value -= damage
+		force_fiield_anim.play("flash")
 	else:
 		hp_bar.value -= damage
+		anims.play("take_damage")
 		if !is_dead and hp_bar.value <= 0:
 			is_dead = true
 			_to_game_over()
@@ -51,6 +54,9 @@ func hit(damage):
 
 
 func _to_game_over():
+	get_tree().call_group("boxes", "disconnect", "triggered", self, "_on_box_triggered")
+	get_tree().call_group("boxes", "kill")
+	disconnect("area_entered", self, "_on_area_entered")
 	yield(get_tree().create_timer(3.0), "timeout")
 # warning-ignore:return_value_discarded
 	get_tree().reload_current_scene()

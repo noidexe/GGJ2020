@@ -55,6 +55,7 @@ func _break():
 	is_working = false
 	timer.paused = true
 	trigger_bar.is_working = is_working
+	repair_bar.value = 0
 	emit_signal("broken", self)
 	pass
 	
@@ -63,8 +64,9 @@ func _restart():
 	is_working = true
 	timer.paused = false
 	trigger_bar.is_working = true
-	repair_bar.value = 0
 	run()
+	yield(get_tree().create_timer(0.2), "timeout")
+	repair_bar.value = 0
 	pass
 
 func run():
@@ -88,3 +90,8 @@ func _on_ConsoleBox_input_event(_viewport, event, _shape_idx):
 			emit_signal("repaired", self)
 			_restart()
 	pass # Replace with function body.
+
+func kill():
+	emit_signal("repaired", self)
+	#spawn_explotion()
+	queue_free()

@@ -1,5 +1,7 @@
 extends Area2D
 
+export(PackedScene) var explosion_scene
+
 export(float) var velocity = 1000
 export(int) var damage = 10
 export(Vector2) var direction = Vector2.RIGHT
@@ -13,10 +15,15 @@ func _physics_process(delta):
 	position += direction * velocity * delta
 
 func kill():
-	#spawn explosion
+	_spawn_explosion()
 	queue_free()
 
 
+func _spawn_explosion():
+	var explosion = explosion_scene.instance()
+	get_parent().add_child(explosion)
+	explosion.global_position = global_position
+	explosion.scale *= 0.5
 
 func _on_death_timer_timeout():
 	queue_free()

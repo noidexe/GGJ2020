@@ -12,30 +12,36 @@ export(PackedScene) var bullet_scene
 onready var advance_timer = $advance_timer
 onready var bullet_spawner = $bullet_spawner
 
+onready var motion_anims = $motion_anims
+onready var damage_anims = $damage_anims
+
 var hp
 var melee_range = false
 
 var ultrazort = null
+var target_position_x
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	target_position_x = position.x
 	ultrazort = get_tree().get_nodes_in_group("ultrazort")[0]
 	hp = total_hp
 	advance_timer.wait_time = pace
 	advance_timer.start()
 	pass # Replace with function body.
-
-
-
+	
 func _on_advance_timer_timeout():
 	_advance()
 	_roll_for_attack()
 	pass # Replace with function body.
 
 func _advance():
+	motion_anims.play("advance")
 	if melee_range:
 		return
-	position.x += stride
+	target_position_x += stride
+	$tween.interpolate_property(self, "position:x", position.x, target_position_x,0.5,Tween.TRANS_QUAD,Tween.EASE_IN)
+	$tween.start()
 	pass
 	
 func _roll_for_attack():
@@ -61,9 +67,12 @@ func _on_Raptorr_area_entered(area):
 	if area.is_in_group("player_bullets"):
 		hit(area.damage)
 		area.kill()
+	elif area.is_in_group("ultrazort"):
+		melee_range = true
 	pass # Replace with function body.
 
 func hit(damage):
 	hp -= damage
+	damage_anims.play("damage")
 	if hp <= 0:
 		queue_free()

@@ -28,6 +28,14 @@ func _ready():
 		sprite.modulate = Color(3.0,1,1)
 	if id == "p2":
 		sprite.modulate = Color(1,1,3.0)
+		
+	yield(get_tree(), "idle_frame")
+	var cameras = get_tree().get_nodes_in_group("cameras")
+	for cam in cameras:
+		if cam.id == id:
+			print(cam.id)
+			cam.target = self
+		
 
 
 func _physics_process(delta):

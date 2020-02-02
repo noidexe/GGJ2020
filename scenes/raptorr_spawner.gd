@@ -16,4 +16,5 @@ func _on_Timer_timeout():
 	var new_raptor = raptor_scene.instance()
 	get_parent().add_child(new_raptor)
 	new_raptor.global_position = global_position
+	new_raptor.target_position_x = global_position.x + 250
 	pass # Replace with function body.

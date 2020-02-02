@@ -94,4 +94,5 @@ wait_time = 10.0
 autostart = true
 
 [node name="Raptorr" parent="overworld" instance=ExtResource( 4 )]
+position = Vector2( 3031.57, 426.794 )
 [connection signal="timeout" from="overworld/raptorr_spawner/Timer" to="overworld/raptorr_spawner" method="_on_Timer_timeout"]
