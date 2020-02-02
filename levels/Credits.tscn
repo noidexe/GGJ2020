@@ -1,0 +1,32 @@
+[gd_scene format=2]
+
+[node name="Credits" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_top = -1.0
+margin_right = 1920.0
+margin_bottom = 199.0
+rect_min_size = Vector2( 0, 200 )
+text = "Credits:"
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+margin_top = 204.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+size_flags_vertical = 3
+text = "Created by: Lisandro Lorea
+Additional Game Design and Balancing: Esteban Borgogno
+Music by: Alejandro Silva Diez"
+align = 1
+valign = 1

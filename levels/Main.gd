@@ -6,7 +6,7 @@ onready var viewport_left = $MainScreens/Screens/P1Screen/ViewportLeft
 onready var viewport_top = $MainScreens/Overworld/ViewportTop
 onready var camera_right = $MainScreens/Screens/P2Screen/ViewportRight/CameraP2
 onready var camera_left = $MainScreens/Screens/P1Screen/ViewportLeft/CameraP1
-onready var world =  $world
+onready var world =  $MainScreens/Screens/P2Screen/ViewportRight/world
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
