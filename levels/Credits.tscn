@@ -115,7 +115,7 @@ custom_fonts/font = SubResource( 4 )
 text = "Created by Lisandro Lorea
 Music by Ale Silva Diez
 Thanks to:
-- Andress Passicot for help with gameplay-related mathematical functions
+- Andres Passicot for help with gameplay-related mathematical functions
  - Francisco Delledone for help with splitscreen view.
 - Esteban Borgogno for help in defining some gameplay params"
 align = 1
