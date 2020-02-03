@@ -1,8 +1,57 @@
-[gd_scene format=2]
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://fonts/Hauser Condensed.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://textures/overworld/bullet_raptor.png" type="Texture" id=2]
+[ext_resource path="res://fonts/Hauser Bold.otf" type="DynamicFontData" id=3]
+[ext_resource path="res://fonts/Hauser Condensed Bold.otf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=3]
+size = 90
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 63
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 50
+font_data = ExtResource( 3 )
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends Button
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+
+
+func _on_Button_pressed():
+	get_tree().change_scene(\"res://levels/Title.tscn\")
+	pass # Replace with function body.
+"
 
 [node name="Credits" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0862745, 0.0862745, 0.0862745, 1 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -12,21 +61,72 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="VBoxContainer"]
-margin_top = -1.0
 margin_right = 1920.0
-margin_bottom = 199.0
+margin_bottom = 200.0
 rect_min_size = Vector2( 0, 200 )
+custom_fonts/font = SubResource( 3 )
 text = "Credits:"
 align = 1
 valign = 1
 
-[node name="Label2" type="Label" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 204.0
 margin_right = 1920.0
-margin_bottom = 1080.0
+margin_bottom = 321.0
+
+[node name="bullet_raptor" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+margin_right = 637.0
+margin_bottom = 117.0
+size_flags_horizontal = 3
+texture = ExtResource( 2 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bullet_raptor2" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+margin_left = 641.0
+margin_right = 1278.0
+margin_bottom = 117.0
+size_flags_horizontal = 3
+texture = ExtResource( 2 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bullet_raptor3" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+margin_left = 1282.0
+margin_right = 1920.0
+margin_bottom = 117.0
+size_flags_horizontal = 3
+texture = ExtResource( 2 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+margin_top = 325.0
+margin_right = 1920.0
+margin_bottom = 976.0
 size_flags_vertical = 3
-text = "Created by: Lisandro Lorea
-Additional Game Design and Balancing: Esteban Borgogno
-Music by: Alejandro Silva Diez"
+custom_fonts/font = SubResource( 4 )
+text = "Created by Lisandro Lorea
+Music by Ale Silva Diez
+Thanks to:
+- Andress Passicot for help with gameplay-related mathematical functions
+ - Francisco Delledone for help with splitscreen view.
+- Esteban Borgogno for help in defining some gameplay params"
 align = 1
 valign = 1
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+margin_top = 980.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+rect_min_size = Vector2( 0, 100 )
+custom_fonts/font = SubResource( 6 )
+text = "Back"
+script = SubResource( 5 )
+[connection signal="pressed" from="VBoxContainer/Button" to="VBoxContainer/Button" method="_on_Button_pressed"]

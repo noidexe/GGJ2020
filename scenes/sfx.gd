@@ -4,6 +4,9 @@ extends AnimatedSprite
 func _ready():
 	frame = 0
 	play()
-	yield(self, "animation_finished")
+	pass # Replace with function body.
+
+
+func _on_sfx_finished():
 	queue_free()
 	pass # Replace with function body.

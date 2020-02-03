@@ -52,6 +52,7 @@ func _on_trigger_timer_timeout():
 	pass # Replace with function body.
 
 func _break():
+	$sfx.play()
 	is_working = false
 	timer.paused = true
 	trigger_bar.is_working = is_working
@@ -61,6 +62,7 @@ func _break():
 	pass
 	
 func _restart():
+	$sfx_repaired.play()
 	smoke.emitting = false
 	hp = rand_range(life_ticks_min, life_ticks_max)
 	is_working = true

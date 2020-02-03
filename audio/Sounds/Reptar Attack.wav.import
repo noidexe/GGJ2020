@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Reptar Attack.wav-486ab04e44eebbf843c4e6799bb7c019.sample"
+
+[deps]
+
+source_file="res://audio/Sounds/Reptar Attack.wav"
+dest_files=[ "res://.import/Reptar Attack.wav-486ab04e44eebbf843c4e6799bb7c019.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

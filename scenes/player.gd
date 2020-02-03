@@ -10,7 +10,7 @@ export var WALK_SPEED = 250 # pixels/sec
 export var JUMP_SPEED = 680
 const SIDING_CHANGE_SPEED = 10
 const BULLET_VELOCITY = 1000
-const SHOOT_TIME_SHOW_WEAPON = 0.2
+const SHOOT_TIME_SHOW_WEAPON = 0.5
 
 var linear_vel = Vector2()
 var shoot_time = 99999 # time since last shot
@@ -27,9 +27,11 @@ onready var sprite = $Sprite
 
 func _ready():
 	if id == "p1":
-		sprite.modulate = Color(3.0,1,1)
+		sprite.modulate = Color(3,0.5,0.5)
+		$repair_sfx.stream = preload("res://audio/Sounds/p1hammer.tres")
 	if id == "p2":
-		sprite.modulate = Color(1,1,3.0)
+		sprite.modulate = Color(0.5,0.5,3)
+		$repair_sfx.stream = preload("res://audio/Sounds/p2hammer.tres")
 		
 	yield(get_tree(), "idle_frame")
 	var cameras = get_tree().get_nodes_in_group("cameras")
@@ -73,7 +75,8 @@ func _physics_process(delta):
 		linear_vel.y = -JUMP_SPEED
 	
 	if Input.is_action_just_pressed(id + "_hit"):
-		_hit(repair_target)
+		shoot_time = 0
+		
 
 
 	### ANIMATION ###
@@ -82,20 +85,20 @@ func _physics_process(delta):
 
 	if on_floor:
 		if linear_vel.x < -SIDING_CHANGE_SPEED:
-			sprite.scale.x = -1
+			sprite.scale.x = -0.763
 			new_anim = "run"
 
 		if linear_vel.x > SIDING_CHANGE_SPEED:
-			sprite.scale.x = 1
+			sprite.scale.x = 0.763
 			new_anim = "run"
 	else:
 		# We want the character to immediately change facing side when the player
 		# tries to change direction, during air control.
 		# This allows for example the player to shoot quickly left then right.
 		if Input.is_action_pressed(id + "_move_left") and not Input.is_action_pressed(id + "_move_right"):
-			sprite.scale.x = -1
+			sprite.scale.x = -0.763
 		if Input.is_action_pressed(id + "_move_right") and not Input.is_action_pressed(id + "_move_left"):
-			sprite.scale.x = 1
+			sprite.scale.x = 0.763
 
 		if linear_vel.y < 0:
 			new_anim = "jumping"
@@ -103,7 +106,7 @@ func _physics_process(delta):
 			new_anim = "falling"
 
 	if shoot_time < SHOOT_TIME_SHOW_WEAPON:
-		new_anim += "_weapon"
+		new_anim = "hit"
 
 	if new_anim != anim:
 		anim = new_anim
@@ -113,3 +116,7 @@ func _physics_process(delta):
 func _hit(target):
 	if target != null and !target.is_working:
 		target.hit()
+
+
+func do_hit():
+	_hit(repair_target)

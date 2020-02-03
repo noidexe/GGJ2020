@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://textures/raptor.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Raptorr.gd" type="Script" id=2]
@@ -100,6 +100,37 @@ tracks/0/keys = {
 "values": [ Color( 94.22, 92.44, 93.06, 1 ), Color( 3, 0, 0, 1 ), Color( 3, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
+[sub_resource type="Animation" id=5]
+resource_name = "die"
+length = 0.3
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.02, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 94.22, 92.44, 93.06, 1 ), Color( 3, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
 [sub_resource type="Animation" id=4]
 length = 0.001
 tracks/0/type = "value"
@@ -120,13 +151,14 @@ tracks/0/keys = {
 ]]
 position = Vector2( 262.213, 426.794 )
 script = ExtResource( 2 )
-stride = 50
+stride = 100
 bullet_scene = ExtResource( 3 )
 
 [node name="col" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( -205.48, 2.29785, -195.717, -78.5978, 26.0484, -353.364, 162.734, -266.889, 97.1807, -0.491699 )
 
 [node name="sprite" type="Sprite" parent="."]
+self_modulate = Color( 94.22, 92.44, 93.06, 1 )
 texture = ExtResource( 1 )
 offset = Vector2( 93, -175 )
 
@@ -141,7 +173,9 @@ anims/advance = SubResource( 1 )
 anims/reset = SubResource( 2 )
 
 [node name="damage_anims" type="AnimationPlayer" parent="."]
+autoplay = "reset"
 anims/damage = SubResource( 3 )
+anims/die = SubResource( 5 )
 anims/reset = SubResource( 4 )
 next/damage = "reset"
 

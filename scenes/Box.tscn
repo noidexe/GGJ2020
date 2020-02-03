@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://styles/progressbar_bg_broken.tres" type="StyleBox" id=1]
 [ext_resource path="res://textures/smoke.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://textures/repair_bar.png" type="Texture" id=8]
 [ext_resource path="res://scenes/repair_bar.gd" type="Script" id=9]
 [ext_resource path="res://textures/consolebox.png" type="Texture" id=10]
+[ext_resource path="res://audio/Sounds/Repaired.wav" type="AudioStream" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 75.662, 50.4861 )
@@ -102,6 +103,13 @@ __meta__ = {
 }
 
 [node name="trigger_timer" type="Timer" parent="."]
+
+[node name="sfx" type="AudioStreamPlayer" parent="."]
+volume_db = -4.602
+bus = "InsideMecha"
+
+[node name="sfx_repaired" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 11 )
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="input_event" from="." to="." method="_on_ConsoleBox_input_event"]

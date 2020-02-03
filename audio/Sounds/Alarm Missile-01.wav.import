@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Alarm Missile-01.wav-de71b4bb7440b75ee0eec3a01def9460.sample"
+
+[deps]
+
+source_file="res://audio/Sounds/Alarm Missile-01.wav"
+dest_files=[ "res://.import/Alarm Missile-01.wav-de71b4bb7440b75ee0eec3a01def9460.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=true
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Attack Missiles.wav-cbb5f1b0da29ab07b8fec74c977e062a.sample"
+
+[deps]
+
+source_file="res://audio/Sounds/Attack Missiles.wav"
+dest_files=[ "res://.import/Attack Missiles.wav-cbb5f1b0da29ab07b8fec74c977e062a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=false
+compress/mode=0

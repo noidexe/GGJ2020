@@ -13,6 +13,7 @@ func _ready():
 
 
 func _on_Timer_timeout():
+	$raptorr_spawn_rate.wait_time = rand_range(10,20)
 	var new_raptor = raptor_scene.instance()
 	get_parent().add_child(new_raptor)
 	new_raptor.global_position = global_position

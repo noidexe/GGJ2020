@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Alarm Force Field.wav-0712fde31ec26df5777adf7b10293eac.sample"
+
+[deps]
+
+source_file="res://audio/Sounds/Alarm Force Field.wav"
+dest_files=[ "res://.import/Alarm Force Field.wav-0712fde31ec26df5777adf7b10293eac.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=true
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=false
+compress/mode=0

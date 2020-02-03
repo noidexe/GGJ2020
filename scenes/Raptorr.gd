@@ -25,7 +25,8 @@ var target_position_x
 func _ready():
 	target_position_x = position.x
 	ultrazort = get_tree().get_nodes_in_group("ultrazort")[0]
-	hp = total_hp
+	hp = rand_range(0.3, 1.0) * total_hp
+	scale *= 0.5 + 0.5 * inverse_lerp(0.3, total_hp, hp)
 	advance_timer.wait_time = pace
 	advance_timer.start()
 	pass # Replace with function body.
@@ -64,6 +65,8 @@ func _ranged_attack():
 	pass
 
 func _on_Raptorr_area_entered(area):
+	if hp <= 0:
+		return
 	if area.is_in_group("player_bullets"):
 		hit(area.damage)
 		area.kill()
@@ -75,4 +78,5 @@ func hit(damage):
 	hp -= damage
 	damage_anims.play("damage")
 	if hp <= 0:
-		queue_free()
+		advance_timer.stop()
+		damage_anims.play("die")

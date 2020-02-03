@@ -9,6 +9,7 @@ export(Vector2) var direction = Vector2.RIGHT
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	look_at(global_position + direction)
+	$spawn_fx.play()
 	pass # Replace with function body.
 
 func _physics_process(delta):

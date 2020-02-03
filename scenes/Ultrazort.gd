@@ -8,6 +8,8 @@ export(PackedScene) var slash_bullet
 export(PackedScene) var gun_bullet
 export(PackedScene) var missile_bullet
 
+signal mortally_wound()
+signal damaged()
 
 onready var anims = $anims
 onready var force_fiield_anim = $force_field/anims
@@ -41,11 +43,14 @@ func _on_area_entered(area:Node):
 		area.kill()
 
 func hit(damage):
+	if is_dead:
+		return
 	if shield_bar.value > 0:
 		shield_bar.value -= damage
 		force_fiield_anim.play("flash")
 	else:
 		hp_bar.value -= damage
+		emit_signal("damaged")
 		anims.play("take_damage")
 		if !is_dead and hp_bar.value <= 0:
 			is_dead = true
@@ -54,13 +59,21 @@ func hit(damage):
 
 
 func _to_game_over():
+	emit_signal("mortally_wound")
 	get_tree().call_group("boxes", "disconnect", "triggered", self, "_on_box_triggered")
 	get_tree().call_group("boxes", "kill")
 	disconnect("area_entered", self, "_on_area_entered")
-	yield(get_tree().create_timer(3.0), "timeout")
+	anims.play("gameover")
+	yield(anims, "animation_finished")
 # warning-ignore:return_value_discarded
-	get_tree().reload_current_scene()
+	get_tree().change_scene("res://levels/GameOver.tscn")
 	pass
+
+func _spawn_explosion():
+	var explosion = preload("res://scenes/Explosion.tscn").instance()
+	get_parent().add_child(explosion)
+	explosion.global_position = global_position + Vector2(rand_range(-50,50), rand_range(-100,100))
+	explosion.scale *= rand_range(0.25, 0.75)
 
 func _on_box_triggered(box):
 	match box.weapon_type:

@@ -1,9 +1,8 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Box.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Ultrazort.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/Raptorr.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/raptorr_spawner.gd" type="Script" id=5]
 [ext_resource path="res://textures/ultrazord_ol.png" type="Texture" id=6]
 [ext_resource path="res://scenes/Floor.gd" type="Script" id=7]
@@ -12,17 +11,21 @@
 [ext_resource path="res://textures/smoke.png" type="Texture" id=10]
 [ext_resource path="res://textures/platform.png" type="Texture" id=11]
 [ext_resource path="res://textures/city.png" type="Texture" id=12]
+[ext_resource path="res://audio/Sounds/Attack Slash .wav" type="AudioStream" id=13]
+[ext_resource path="res://audio/Sounds/Attack Missiles.wav" type="AudioStream" id=14]
+[ext_resource path="res://audio/Sounds/Alarm Force Field.wav" type="AudioStream" id=15]
+[ext_resource path="res://audio/Sounds/Attack Gun.wav" type="AudioStream" id=16]
 
-[sub_resource type="CanvasItemMaterial" id=12]
+[sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1
 
-[sub_resource type="Curve" id=13]
+[sub_resource type="Curve" id=2]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.348315, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -2.86333, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=14]
-curve = SubResource( 13 )
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
 
-[sub_resource type="ParticlesMaterial" id=15]
+[sub_resource type="ParticlesMaterial" id=4]
 flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
@@ -34,26 +37,26 @@ orbit_velocity_random = 0.0
 linear_accel = 100.0
 damping = 20.0
 scale = 1.5
-scale_curve = SubResource( 14 )
+scale_curve = SubResource( 3 )
 hue_variation = 0.52
 hue_variation_random = 1.0
 
-[sub_resource type="Gradient" id=2]
+[sub_resource type="Gradient" id=5]
 offsets = PoolRealArray( 0, 0.503226, 0.651613, 0.832258, 1 )
 colors = PoolColorArray( 0.941922, 1, 0, 1, 0.987716, 0.0727975, 0, 1, 0.0619349, 0, 0, 1, 0.0823529, 0.0823529, 0.0823529, 1, 0, 0, 0, 0 )
 
-[sub_resource type="GradientTexture" id=3]
-gradient = SubResource( 2 )
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 5 )
 width = 128
 
-[sub_resource type="Curve" id=4]
+[sub_resource type="Curve" id=7]
 _data = [ Vector2( 0, 0.311364 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=5]
+[sub_resource type="CurveTexture" id=8]
 width = 256
-curve = SubResource( 4 )
+curve = SubResource( 7 )
 
-[sub_resource type="ParticlesMaterial" id=6]
+[sub_resource type="ParticlesMaterial" id=9]
 emission_shape = 2
 emission_box_extents = Vector3( 50, 1, 1 )
 flag_disable_z = true
@@ -65,37 +68,37 @@ angular_velocity_random = 0.5
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale_random = 0.5
-scale_curve = SubResource( 5 )
-color_ramp = SubResource( 3 )
+scale_curve = SubResource( 8 )
+color_ramp = SubResource( 6 )
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 453.715, 69.8799 )
 
-[sub_resource type="RectangleShape2D" id=16]
+[sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 124.873, 312.057 )
 
-[sub_resource type="RectangleShape2D" id=17]
+[sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 124.873, 251.715 )
 
-[sub_resource type="RectangleShape2D" id=18]
+[sub_resource type="RectangleShape2D" id=13]
 extents = Vector2( 119.169, 365.091 )
 
-[sub_resource type="RectangleShape2D" id=19]
+[sub_resource type="RectangleShape2D" id=14]
 extents = Vector2( 93.1566, 195.548 )
 
-[sub_resource type="RectangleShape2D" id=20]
+[sub_resource type="RectangleShape2D" id=15]
 extents = Vector2( 72.1907, 54.3455 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=16]
 extents = Vector2( 140.585, 15.8105 )
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=17]
 extents = Vector2( 99.4582, 15.8105 )
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=18]
 extents = Vector2( 30.7667, 15.8105 )
 
-[sub_resource type="RectangleShape2D" id=11]
+[sub_resource type="RectangleShape2D" id=19]
 extents = Vector2( 959.139, 51.0821 )
 
 [node name="World" type="Node2D"]
@@ -107,17 +110,17 @@ scale = Vector2( 0.809141, 0.809142 )
 texture = ExtResource( 8 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
-material = SubResource( 12 )
+material = SubResource( 1 )
 position = Vector2( 1323.35, 4494.71 )
 amount = 32
 lifetime = 5.0
-process_material = SubResource( 15 )
+process_material = SubResource( 4 )
 texture = ExtResource( 9 )
 
 [node name="smoke" type="Particles2D" parent="."]
 position = Vector2( 1089.47, 5051.16 )
 amount = 16
-process_material = SubResource( 6 )
+process_material = SubResource( 9 )
 texture = ExtResource( 10 )
 __meta__ = {
 "_editor_description_": ""
@@ -126,7 +129,7 @@ __meta__ = {
 [node name="smoke2" type="Particles2D" parent="."]
 position = Vector2( 1544.91, 5059.22 )
 amount = 16
-process_material = SubResource( 6 )
+process_material = SubResource( 9 )
 texture = ExtResource( 10 )
 __meta__ = {
 "_editor_description_": ""
@@ -140,78 +143,78 @@ __meta__ = {
 
 [node name="hips" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 127.198, 335.615 )
-shape = SubResource( 1 )
+shape = SubResource( 10 )
 
 [node name="head" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 103.529, -670.348 )
-shape = SubResource( 1 )
+shape = SubResource( 10 )
 
 [node name="head4" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 850.904, 395.797 )
-shape = SubResource( 1 )
+shape = SubResource( 10 )
 
 [node name="head5" type="CollisionShape2D" parent="Walls"]
 position = Vector2( -616.854, 589.833 )
-shape = SubResource( 1 )
+shape = SubResource( 10 )
 
 [node name="head2" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 789.95, -725.577 )
-shape = SubResource( 1 )
+shape = SubResource( 10 )
 
 [node name="head3" type="CollisionShape2D" parent="Walls"]
 position = Vector2( -582.893, -713.742 )
-shape = SubResource( 1 )
+shape = SubResource( 10 )
 
 [node name="arm" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 562.801, 233.218 )
-shape = SubResource( 16 )
+shape = SubResource( 11 )
 
 [node name="arm10" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 1106.79, 232.783 )
 rotation = -0.220993
-shape = SubResource( 17 )
+shape = SubResource( 12 )
 
 [node name="arm5" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 1134.82, -611.871 )
-shape = SubResource( 17 )
+shape = SubResource( 12 )
 
 [node name="arm6" type="CollisionShape2D" parent="Walls"]
 position = Vector2( -912.612, -611.871 )
-shape = SubResource( 17 )
+shape = SubResource( 12 )
 
 [node name="arm2" type="CollisionShape2D" parent="Walls"]
 position = Vector2( -337.736, 291.958 )
-shape = SubResource( 18 )
+shape = SubResource( 13 )
 
 [node name="arm7" type="CollisionShape2D" parent="Walls"]
 position = Vector2( -888.333, 293.786 )
-shape = SubResource( 18 )
+shape = SubResource( 13 )
 
 [node name="arm3" type="CollisionShape2D" parent="Walls"]
 position = Vector2( -386.454, -196.649 )
-shape = SubResource( 19 )
+shape = SubResource( 14 )
 
 [node name="arm11" type="CollisionShape2D" parent="Walls"]
 position = Vector2( -308.987, -72.9399 )
 rotation = 0.643336
-shape = SubResource( 20 )
+shape = SubResource( 15 )
 
 [node name="arm12" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 529.6, -81.8198 )
 rotation = -0.646625
-shape = SubResource( 20 )
+shape = SubResource( 15 )
 
 [node name="arm8" type="CollisionShape2D" parent="Walls"]
 position = Vector2( -830.78, -196.649 )
-shape = SubResource( 19 )
+shape = SubResource( 14 )
 
 [node name="arm4" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 611.167, -176.544 )
-shape = SubResource( 19 )
+shape = SubResource( 14 )
 
 [node name="arm9" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 1022.27, -176.544 )
-shape = SubResource( 19 )
+shape = SubResource( 14 )
 
 [node name="PlatformDoor" type="StaticBody2D" parent="."]
 position = Vector2( 1307.75, 4134.05 )
@@ -227,7 +230,7 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 1152, 128 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformDoor"]
-shape = SubResource( 7 )
+shape = SubResource( 16 )
 
 [node name="PlatformWide" type="StaticBody2D" parent="."]
 position = Vector2( 918.054, 4126.07 )
@@ -236,7 +239,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformWide"]
-shape = SubResource( 8 )
+shape = SubResource( 17 )
 
 [node name="Sprite2" type="Sprite" parent="PlatformWide"]
 scale = Vector2( 0.23959, 0.23959 )
@@ -251,7 +254,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformWide7"]
-shape = SubResource( 8 )
+shape = SubResource( 17 )
 
 [node name="PlatformWide8" type="StaticBody2D" parent="."]
 position = Vector2( 412.629, 4477.26 )
@@ -268,7 +271,7 @@ region_rect = Rect2( 0, 0, 128, 128 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformWide8"]
 position = Vector2( -34.7989, 0 )
-shape = SubResource( 8 )
+shape = SubResource( 17 )
 
 [node name="PlatformWide9" type="StaticBody2D" parent="."]
 position = Vector2( 364.013, 4680.41 )
@@ -284,7 +287,7 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 256, 128 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformWide9"]
-shape = SubResource( 8 )
+shape = SubResource( 17 )
 
 [node name="PlatformWide10" type="StaticBody2D" parent="."]
 position = Vector2( 365.749, 4866.19 )
@@ -293,7 +296,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformWide10"]
-shape = SubResource( 8 )
+shape = SubResource( 17 )
 
 [node name="Sprite5" type="Sprite" parent="PlatformWide10"]
 position = Vector2( 67.6279, 0 )
@@ -316,7 +319,7 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 384, 128 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformWide11"]
-shape = SubResource( 8 )
+shape = SubResource( 17 )
 
 [node name="PlatformWide2" type="StaticBody2D" parent="."]
 position = Vector2( 1702.73, 4146.14 )
@@ -331,7 +334,7 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 768, 128 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformWide2"]
-shape = SubResource( 8 )
+shape = SubResource( 17 )
 
 [node name="PlatformWide3" type="StaticBody2D" parent="."]
 position = Vector2( 1946.32, 4259.24 )
@@ -347,7 +350,7 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 640, 128 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformWide3"]
-shape = SubResource( 8 )
+shape = SubResource( 17 )
 
 [node name="PlatformWide4" type="StaticBody2D" parent="."]
 position = Vector2( 2183.9, 4404.23 )
@@ -356,7 +359,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformWide4"]
-shape = SubResource( 8 )
+shape = SubResource( 17 )
 
 [node name="Sprite5" type="Sprite" parent="PlatformWide4"]
 position = Vector2( -78.0649, 0 )
@@ -372,7 +375,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformWide5"]
-shape = SubResource( 8 )
+shape = SubResource( 17 )
 
 [node name="Sprite6" type="Sprite" parent="PlatformWide5"]
 position = Vector2( -31.4326, 0 )
@@ -388,7 +391,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformWide6"]
-shape = SubResource( 8 )
+shape = SubResource( 17 )
 
 [node name="Sprite7" type="Sprite" parent="PlatformWide6"]
 position = Vector2( -31.7307, 0 )
@@ -412,7 +415,7 @@ region_rect = Rect2( 0, 0, 256, 128 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformSmall"]
 position = Vector2( -72.9039, -174.16 )
-shape = SubResource( 9 )
+shape = SubResource( 18 )
 
 [node name="PlatformSmall2" type="StaticBody2D" parent="."]
 position = Vector2( 1576.62, 4263.07 )
@@ -421,7 +424,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformSmall2"]
-shape = SubResource( 9 )
+shape = SubResource( 18 )
 
 [node name="Sprite9" type="Sprite" parent="PlatformSmall2"]
 scale = Vector2( 0.23959, 0.23959 )
@@ -442,37 +445,59 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 256, 128 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformSmall3"]
-shape = SubResource( 9 )
+shape = SubResource( 18 )
 
 [node name="SlashBox" parent="." instance=ExtResource( 2 )]
 position = Vector2( 665.868, 4973.77 )
 weapon_type = 2
-fill_time = 1.0
-life_ticks_min = 50
-life_ticks_max = 100
+fill_time = 10.0
+life_ticks_max = 20
+
+[node name="sfx" parent="SlashBox" index="4"]
+stream = ExtResource( 13 )
 
 [node name="GunBox" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1952.9, 4778.87 )
 weapon_type = 0
-fill_time = 3.0
+fill_time = 5.0
+
+[node name="sfx" parent="GunBox" index="4"]
+stream = ExtResource( 16 )
 
 [node name="MissilesRBox" parent="." instance=ExtResource( 2 )]
 position = Vector2( 478.686, 4066.87 )
 weapon_type = 1
-fill_time = 3.0
+fill_time = 10.0
+life_ticks_max = 15
+
+[node name="sfx" parent="MissilesRBox" index="4"]
+stream = ExtResource( 14 )
 
 [node name="MissilesLBox" parent="." instance=ExtResource( 2 )]
 position = Vector2( 2128.04, 4076.67 )
 weapon_type = 1
-fill_time = 3.0
+fill_time = 10.0
+life_ticks_max = 15
+
+[node name="sfx" parent="MissilesLBox" index="4"]
+stream = ExtResource( 14 )
 
 [node name="ShieldsUpperBox" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1329.82, 4272.84 )
-fill_time = 3.0
+fill_time = 5.0
+life_ticks_min = 20
+life_ticks_max = 30
+hits_to_repair = 3
+
+[node name="sfx" parent="ShieldsUpperBox" index="4"]
+stream = ExtResource( 15 )
 
 [node name="ShieldsLowerBox" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1329.82, 4716.97 )
-fill_time = 3.0
+fill_time = 10.0
+
+[node name="sfx" parent="ShieldsLowerBox" index="4"]
+stream = ExtResource( 15 )
 
 [node name="Player1" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1208.64, 4056.67 )
@@ -505,11 +530,8 @@ position = Vector2( -235.337, 409.345 )
 script = ExtResource( 5 )
 
 [node name="raptorr_spawn_rate" type="Timer" parent="overworld/raptorr_spawner"]
-wait_time = 10.0
+wait_time = 5.0
 autostart = true
-
-[node name="Raptorr" parent="overworld" instance=ExtResource( 4 )]
-position = Vector2( 3031.57, 426.794 )
 
 [node name="Floor" type="Area2D" parent="."]
 monitorable = false
@@ -517,6 +539,18 @@ script = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 position = Vector2( 959.372, 257.162 )
-shape = SubResource( 11 )
+shape = SubResource( 19 )
 [connection signal="timeout" from="overworld/raptorr_spawner/raptorr_spawn_rate" to="overworld/raptorr_spawner" method="_on_Timer_timeout"]
 [connection signal="area_entered" from="Floor" to="Floor" method="_on_Floor_area_entered"]
+
+[editable path="SlashBox"]
+
+[editable path="GunBox"]
+
+[editable path="MissilesRBox"]
+
+[editable path="MissilesLBox"]
+
+[editable path="ShieldsUpperBox"]
+
+[editable path="ShieldsLowerBox"]

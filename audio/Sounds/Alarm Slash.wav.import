@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Alarm Slash.wav-2938cdd95bf948c8538d67193dc79b13.sample"
+
+[deps]
+
+source_file="res://audio/Sounds/Alarm Slash.wav"
+dest_files=[ "res://.import/Alarm Slash.wav-2938cdd95bf948c8538d67193dc79b13.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=true
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=false
+compress/mode=0
