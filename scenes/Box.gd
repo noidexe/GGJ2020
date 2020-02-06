@@ -62,7 +62,7 @@ func _break():
 	pass
 	
 func _restart():
-	$sfx_repaired.play()
+	#$sfx_repaired.play()
 	smoke.emitting = false
 	hp = rand_range(life_ticks_min, life_ticks_max)
 	is_working = true

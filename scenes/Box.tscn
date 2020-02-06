@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://styles/progressbar_bg_broken.tres" type="StyleBox" id=1]
 [ext_resource path="res://textures/smoke.png" type="Texture" id=2]
@@ -11,39 +11,10 @@
 [ext_resource path="res://scenes/repair_bar.gd" type="Script" id=9]
 [ext_resource path="res://textures/consolebox.png" type="Texture" id=10]
 [ext_resource path="res://audio/Sounds/Repaired.wav" type="AudioStream" id=11]
+[ext_resource path="res://materials/particles/box_smoke.tres" type="Material" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 75.662, 50.4861 )
-
-[sub_resource type="Gradient" id=2]
-offsets = PoolRealArray( 0, 0.503226, 0.651613, 0.832258, 1 )
-colors = PoolColorArray( 0.941922, 1, 0, 1, 0.987716, 0.0727975, 0, 1, 0.0619349, 0, 0, 1, 0.0823529, 0.0823529, 0.0823529, 1, 0, 0, 0, 0 )
-
-[sub_resource type="GradientTexture" id=3]
-gradient = SubResource( 2 )
-width = 128
-
-[sub_resource type="Curve" id=4]
-_data = [ Vector2( 0, 0.311364 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=5]
-width = 256
-curve = SubResource( 4 )
-
-[sub_resource type="ParticlesMaterial" id=6]
-emission_shape = 2
-emission_box_extents = Vector3( 50, 1, 1 )
-flag_disable_z = true
-direction = Vector3( 0, -1, 0 )
-gravity = Vector3( 0, -98, 0 )
-initial_velocity = 100.0
-angular_velocity = 200.0
-angular_velocity_random = 0.5
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale_random = 0.5
-scale_curve = SubResource( 5 )
-color_ramp = SubResource( 3 )
 
 [node name="ConsoleBox" type="Area2D" groups=[
 "boxes",
@@ -59,7 +30,7 @@ shape = SubResource( 1 )
 position = Vector2( -1.78262, -35.5631 )
 emitting = false
 amount = 16
-process_material = SubResource( 6 )
+process_material = ExtResource( 12 )
 texture = ExtResource( 2 )
 
 [node name="sprite" type="Sprite" parent="."]
@@ -86,6 +57,7 @@ fg_working = ExtResource( 5 )
 fg_broken = ExtResource( 3 )
 bg_working = ExtResource( 6 )
 bg_broken = ExtResource( 1 )
+is_working = true
 
 [node name="repair_bar" type="TextureProgress" parent="sprite"]
 self_modulate = Color( 1, 0.984314, 0, 1 )
